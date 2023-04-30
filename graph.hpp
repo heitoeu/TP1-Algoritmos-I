@@ -17,7 +17,7 @@ private:
 public:
     Graph(int num_vertices);
     void adicionar_aresta(int u, int v, int w);
-    int dijkstra_par(int s);
+    int dijkstra(int s);
 };
 
 #endif // GRAPH_HPP

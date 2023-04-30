@@ -18,7 +18,7 @@ int main(int argc, char const *argv[])
             grafo.adicionar_aresta(u, v, w);
         }
     }
-    cout << grafo.dijkstra_par(0) << endl;
+    cout << grafo.dijkstra(0) << endl;
 
     return 0;
 }

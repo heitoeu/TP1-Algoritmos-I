@@ -20,7 +20,7 @@ void Graph::adicionar_aresta(int u, int v, int w)
   this->g[v + (n / 2)].push_back({w, u});
 }
 
-int Graph::dijkstra_par(int s)
+int Graph::dijkstra(int s)
 {
   int f = (n / 2) - 1; // destino final
   priority_queue<pair<int, int>> fp;
@@ -28,7 +28,7 @@ int Graph::dijkstra_par(int s)
   vector<int> dist(n, INF);
 
   dist[s] = 0;
-  fp.push({dist[s], s});
+  fp.push({-dist[s], s});
 
   while (!fp.empty())
   {
@@ -36,12 +36,12 @@ int Graph::dijkstra_par(int s)
     visitados[v.second] = true;
     fp.pop();
 
-    for (auto w : g[v.second]) // para cada vizinho w de v
+    for (auto u : g[v.second]) // para cada vizinho w de v
     {
-      if (visitados[w.second] == false && dist[w.second] > dist[v.second] + w.first)
+      if (visitados[u.second] == false && dist[u.second] > dist[v.second] + u.first)
       {
-        dist[w.second] = dist[v.second] + w.first;
-        fp.push({dist[w.second], w.second});
+        dist[u.second] = dist[v.second] + u.first;
+        fp.push({-dist[u.second], u.second});
       }
     }
   }
@@ -52,4 +52,3 @@ int Graph::dijkstra_par(int s)
   }
   return dist[f];
 }
-// http://graphonline.ru/en/?graph=VRJPaFKddBxJUAeG
